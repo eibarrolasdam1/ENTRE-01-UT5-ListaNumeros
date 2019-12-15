@@ -1,12 +1,11 @@
-
+import java.util.Arrays;
 /**
  * La clase encapsula en un array
  * una lista de numeros
  * 
- * @author - 
+ * @author - Eunate Ibarrola Santesteban
  * 
  */
-import java.util.Arrays;
 
 public class ListaNumeros 
 {
@@ -25,8 +24,10 @@ public class ListaNumeros
     {
         if (n > TAM_LISTA) {
             throw new IllegalArgumentException("Valor no permitido para tamaño lista");
+        } else {
+            numeros = new int [n];
         }
-        // completar
+        pos = 0;
     }
 
     /**
@@ -38,9 +39,13 @@ public class ListaNumeros
      */
     public boolean addElemento(int numero)
     {
-        
-        return true;
-
+        if (!estaCompleta() && !estaElemento(numero)) {
+            numeros[pos] = numero;
+            pos++;
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -48,8 +53,7 @@ public class ListaNumeros
      */
     public boolean estaCompleta()
     {
-        return true;
-
+        return pos == numeros.length - 1;
     }
 
     /**
@@ -57,8 +61,7 @@ public class ListaNumeros
      */
     public boolean estaVacia() 
     {
-        return true;
-
+        return pos == 0;
     }
 
     /**
@@ -66,8 +69,7 @@ public class ListaNumeros
      */
     public int getTotalNumeros()
     {
-        return 0;
-
+        return pos - 1;
     }
 
     /**
@@ -75,7 +77,11 @@ public class ListaNumeros
      */
     public void vaciarLista() 
     {
-        
+        for (int i = pos - 1; i >= 0; i--)
+        {
+            numeros[i] = 0;
+            pos = 0;
+        }
     }
 
     /**
@@ -84,8 +90,12 @@ public class ListaNumeros
      */
     public boolean estaElemento(int numero) 
     {
-        
-        return false;
+        int resul = Arrays.binarySearch(numeros, numero);
+        if (resul > 0 && resul < pos) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     /**
@@ -122,7 +132,6 @@ public class ListaNumeros
      * (ver detalles en el enunciado)
      */
     public int[] expandir() {
-         
 
         return null;
     }
@@ -145,11 +154,10 @@ public class ListaNumeros
      *  después de reorganizarParesImpares() quedaría {4, 2, 8, 3, 7, 9, 5, 11, 13}
      */
     public void reorganizarParesImpares() {
-         
-
+        int [] pares = new int[pos];
+        int [] impares = new int[pos];
     }
 
-     
     /**
      *  Usando métodos de la clase Arrays haz una copia 
      *  de numeros al tamaño indicado por su longitud lógica
@@ -158,9 +166,10 @@ public class ListaNumeros
      *  que incluya los elementos del array ordenado
      */
     public ListaNumeros nuevaLista() {
-         
-        return null;
-
+        int [] array = Arrays.copyOf(numeros, pos);
+        Arrays.sort(array);
+        ListaNumeros lista = new ListaNumeros(array.length);
+        return lista;
     }
 
     /**
@@ -176,7 +185,7 @@ public class ListaNumeros
      */
     public int[][] toArray2D() 
     {
-        
+
         return null;
     }
 
@@ -199,9 +208,8 @@ public class ListaNumeros
         System.out.println("Original: " + numeros.toString());
         int[] expandido = numeros.expandir();
         System.out.println("Expandido: " + Arrays.toString(expandido));
-        // seguir completando
-        
-        
-        
+        numeros.vaciarLista();
+        System.out.println("Después de vaciar la lista: " + numeros.toString());
+
     }
 }
