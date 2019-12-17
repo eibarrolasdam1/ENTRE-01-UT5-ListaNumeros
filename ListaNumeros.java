@@ -53,7 +53,7 @@ public class ListaNumeros
      */
     public boolean estaCompleta()
     {
-        return pos == numeros.length - 1;
+        return pos == numeros.length;
     }
 
     /**
@@ -69,7 +69,7 @@ public class ListaNumeros
      */
     public int getTotalNumeros()
     {
-        return pos - 1;
+        return pos;
     }
 
     /**
@@ -92,10 +92,9 @@ public class ListaNumeros
     {
         int resul = Arrays.binarySearch(numeros, numero);
         if (resul > 0 && resul < pos) {
-            return false;
-        } else {
             return true;
         }
+        return false;
     }
 
     /**
@@ -107,8 +106,17 @@ public class ListaNumeros
      */
     public String toString() 
     {
-        
-        return null;
+        String str = "";
+        for (int i = 0; i < numeros.length; i++) {
+            if (pos != numeros.length) {
+                str += "|";
+            }
+            str += numeros [i];
+            if (estaCompleta()) {
+                str += "|" + "|";
+            }
+        }
+        return str;
     }
 
     /**
