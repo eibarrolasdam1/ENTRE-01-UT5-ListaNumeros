@@ -7,7 +7,6 @@ import java.util.Arrays;
  * 
  */
 
-
 public class ListaNumeros 
 {
     public static final int TAM_LISTA = 16;
@@ -26,7 +25,10 @@ public class ListaNumeros
         if (n > TAM_LISTA) {
             throw new IllegalArgumentException("Valor no permitido para tamaño lista");
         }
-        // completar
+        else {
+            numeros = new int [n];
+        }
+        pos = 0;
     }
 
     /**
@@ -38,9 +40,12 @@ public class ListaNumeros
      */
     public boolean addElemento(int numero)
     {
-
-        return true;
-
+        if (!estaCompleta() && !estaElemento(numero)) {
+            numeros[pos] = numero;
+            pos++;
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -100,8 +105,19 @@ public class ListaNumeros
      */
     public String toString() 
     {
-        
-        return null;
+        String str = "";
+        for (int i = 0; i < pos; i++) {
+            if (pos == 0) {
+                str += "|" + numeros[i] + "|";
+            } else {
+                str += numeros[i] + "|";
+            }
+        }
+        String str2 = "";
+        for (int j = pos; j < numeros.length; j++) {
+            str2 += "|";
+        }
+        return str + str2;
     }
 
     /**
@@ -125,7 +141,7 @@ public class ListaNumeros
      * (ver detalles en el enunciado)
      */
     public int[] expandir() {
-        if(!esImpar(numeros.length)) {
+        if(esImpar(numeros.length)) {
             throw new RuntimeException("Nº impar de elementos en el array, añada uno más");
         }
         int [] resultado = new int[] {}; 
@@ -190,7 +206,7 @@ public class ListaNumeros
     {
         int [][] array = new int [][]{};
         for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < i; j++) {
+            for (int j = 0; array[i].length < i; j++) {
                 System.out.print(array[i][j]);
             }
             System.out.println();
@@ -217,7 +233,8 @@ public class ListaNumeros
         System.out.println("Original: " + numeros.toString());
         int[] expandido = numeros.expandir();
         System.out.println("Expandido: " + Arrays.toString(expandido));
-        // seguir completando
+        int[][] array2D = numeros.toArray2D();
+        System.out.println("Array 2D: " + Arrays.toString(array2D));
 
     }
 }
