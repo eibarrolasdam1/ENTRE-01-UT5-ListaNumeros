@@ -1,12 +1,12 @@
-
+import java.util.Arrays;
 /**
  * La clase encapsula en un array
  * una lista de numeros
  * 
- * @author - 
+ * @author - Eunate Ibarrola Santesteban
  * 
  */
-import java.util.Arrays;
+
 
 public class ListaNumeros 
 {
@@ -48,8 +48,7 @@ public class ListaNumeros
      */
     public boolean estaCompleta()
     {
-        return true;
-
+        return pos == numeros.length;
     }
 
     /**
@@ -57,8 +56,7 @@ public class ListaNumeros
      */
     public boolean estaVacia() 
     {
-        return true;
-
+        return pos == 0;
     }
 
     /**
@@ -66,8 +64,7 @@ public class ListaNumeros
      */
     public int getTotalNumeros()
     {
-        return 0;
-
+        return pos;
     }
 
     /**
@@ -75,7 +72,10 @@ public class ListaNumeros
      */
     public void vaciarLista() 
     {
-
+        for (int i =0; i < pos; i++) {
+            numeros[i] = 0;
+            pos = 0;
+        }
     }
 
     /**
@@ -84,7 +84,10 @@ public class ListaNumeros
      */
     public boolean estaElemento(int numero) 
     {
-
+        int aux = Arrays.binarySearch(numeros, numero);
+        if (aux > 0 && aux < pos) {
+            return true;
+        }
         return false;
     }
 
@@ -97,7 +100,7 @@ public class ListaNumeros
      */
     public String toString() 
     {
-
+        
         return null;
     }
 
