@@ -204,12 +204,13 @@ public class ListaNumeros
      */
     public int[][] toArray2D() 
     {
-        int [][] array = new int [][]{};
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; array[i].length < i; j++) {
-                System.out.print(array[i][j]);
+        int [][] array = new int [4][4];
+        int aux = 0;
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array.length; j++) {
+                array[i][j] = numeros[aux];
+                aux++;
             }
-            System.out.println();
         }
         return array;
     }
