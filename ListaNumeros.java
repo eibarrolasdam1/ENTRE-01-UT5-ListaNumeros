@@ -110,14 +110,10 @@ public class ListaNumeros
             str += " | | ";
         } else {
             for (int i = 0; i < pos; i++) {
-                if (pos == 0) {
-                    str += " | " + numeros[i] + " | ";
-                } else {
                     str += numeros[i] + " | ";
-                }
             }
         }
-        return str;
+        return " | " + str;
     }
 
     /**
@@ -179,7 +175,11 @@ public class ListaNumeros
      *  después de reorganizarParesImpares() quedaría {4, 2, 8, 3, 7, 9, 5, 11, 13}
      */
     public void reorganizarParesImpares() {
-        
+        for (int i = pos; i <= 0; i--) {
+            if (esImpar(numeros[i])) {
+                System.arraycopy(numeros, numeros[i + 1], numeros, i, pos - numeros[i] - 1);
+            }
+        }
     }
 
     /**
