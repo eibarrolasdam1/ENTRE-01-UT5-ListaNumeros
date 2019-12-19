@@ -176,8 +176,9 @@ public class ListaNumeros
      */
     public void reorganizarParesImpares() {
         for (int i = pos; i <= 0; i--) {
-            if (esImpar(numeros[i])) {
-                System.arraycopy(numeros, numeros[i + 1], numeros, i, pos - numeros[i] - 1);
+            if (!esImpar(numeros[i]) && numeros[i] != pos - 1) {
+                int aux = numeros[i];
+                System.arraycopy(numeros, numeros[i + 1], numeros, i, pos - aux - 1);
             }
         }
     }
