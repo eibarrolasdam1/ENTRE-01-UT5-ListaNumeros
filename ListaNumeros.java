@@ -77,7 +77,7 @@ public class ListaNumeros
      */
     public void vaciarLista() 
     {
-        for (int i =0; i < pos; i++) {
+        for (int i = 0; i < pos; i++) {
             numeros[i] = 0;
             pos = 0;
         }
@@ -106,18 +106,18 @@ public class ListaNumeros
     public String toString() 
     {
         String str = "";
-        for (int i = 0; i < pos; i++) {
-            if (pos == 0) {
-                str += "|" + numeros[i] + "|";
-            } else {
-                str += numeros[i] + "|";
+        if (estaVacia()) {
+            str += " | | ";
+        } else {
+            for (int i = 0; i < pos; i++) {
+                if (pos == 0) {
+                    str += " | " + numeros[i] + " | ";
+                } else {
+                    str += numeros[i] + " | ";
+                }
             }
         }
-        String str2 = "";
-        for (int j = pos; j < numeros.length; j++) {
-            str2 += "|";
-        }
-        return str + str2;
+        return str;
     }
 
     /**
@@ -141,13 +141,21 @@ public class ListaNumeros
      * (ver detalles en el enunciado)
      */
     public int[] expandir() {
+        int [] resultado;
         if(esImpar(numeros.length)) {
             throw new RuntimeException("Nº impar de elementos en el array, añada uno más");
-        }
-        int [] resultado = new int[] {}; 
-        for (int i = 1;i < pos; i+= 2) {
-            for (int j = numeros[i]; j <= numeros[i - 1]; i++) {
-                resultado[i] = numeros[j];
+        } else {
+            int contadorDeNumeros = 0;
+            for (int i = 0; i < pos; i+= 2) {
+                contadorDeNumeros += numeros[i];
+            }
+            resultado = new int [contadorDeNumeros];
+            int nuevaPos = 0;
+            for (int j = 0; j < pos; j += 2) {
+                for (int k = 0; k < numeros[j]; k++) {
+                    resultado[nuevaPos] = numeros[j + 1];
+                    nuevaPos++;
+                }
             }
         }
         return resultado;
@@ -171,7 +179,7 @@ public class ListaNumeros
      *  después de reorganizarParesImpares() quedaría {4, 2, 8, 3, 7, 9, 5, 11, 13}
      */
     public void reorganizarParesImpares() {
-
+        
     }
 
     /**
